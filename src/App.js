@@ -8,14 +8,40 @@ class App extends React.Component {
   constructor(){
     super()
     this.state = {
-      currentUser: null
+      currentUser: null,
+      loginForm: {
+        email: "",
+        password: ""
+      }
     }
   }
+
+  handleLoginFormChange = event => {
+     const { name, value } = event.target
+     this.setState({
+        loginForm: {
+          ...this.state.loginForm,
+          [name]: value
+        }
+     })
+  }
+
+  handleLoginFormSubmit = event => {
+
+  }
+
+
+
   render() {
     return (
       <div className="App">
         Hello World
-        <Login />
+        <Login 
+          handleLoginFormChange={this.handleLoginFormChange}
+          handleLoginFormSubmit={this.handleLoginFormSubmit}
+          email={this.state.loginForm.email}
+          password={this.state.loginForm.password}
+        />
       </div>
     );
   }
