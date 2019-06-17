@@ -27,7 +27,23 @@ class App extends React.Component {
   }
 
   handleLoginFormSubmit = event => {
+    event.preventDefault()
 
+    const userInfo = this.state.loginForm
+    const headers = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        user: userInfo 
+      })
+    }
+
+    fetch("http://localhost:3001/api/login", headers)
+       .then(result => result.json())
+       .then(console.log)
+       .catch(console.log)
   }
 
 
