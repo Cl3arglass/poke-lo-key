@@ -42,16 +42,28 @@ class App extends React.Component {
 
     fetch("http://localhost:3001/api/login", headers)
        .then(result => result.json())
-       .then(console.log)
+       .then(userJSON => {
+         if (userJSON.error) {
+            alert(userJSON.error)
+         } else {
+            this.setState({
+              currentUser: userJSON
+            })
+         }
+       })
        .catch(console.log)
   }
 
 
 
   render() {
+    const { currentUser } = this.state
     return (
       <div className="App">
-        Hello World
+        <h2>{ currentUser ? 
+          `Logged in as ${currentUser.name}` :
+           "Not logged in"
+        }</h2>
         <Login 
           handleLoginFormChange={this.handleLoginFormChange}
           handleLoginFormSubmit={this.handleLoginFormSubmit}
