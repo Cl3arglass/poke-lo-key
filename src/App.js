@@ -60,7 +60,16 @@ class App extends React.Component {
   getPokes = () => {
     fetch("http://localhost:3001/api/pokes")
       .then(result => result.json())
-      .then(console.log)
+      .then(pokes => {
+        if (pokes.error) {
+           alert("Not authorized for those secrets")
+        } else {
+          this.setState({
+            pokes
+          })
+        }
+      })
+      .catch(console.log)
   }
 
 
