@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
 import Login from './components/Login'
+import Pokes from './components/Pokes'
+
 
 
 class App extends React.Component {
@@ -12,7 +14,8 @@ class App extends React.Component {
       loginForm: {
         email: "",
         password: ""
-      }
+      },
+      pokes: []
     }
   }
 
@@ -54,6 +57,12 @@ class App extends React.Component {
        .catch(console.log)
   }
 
+  getPokes = () => {
+    fetch("http://localhost:3001/api/pokes")
+      .then(result => result.json())
+      .then(console.log)
+  }
+
 
 
   render() {
@@ -70,6 +79,8 @@ class App extends React.Component {
           email={this.state.loginForm.email}
           password={this.state.loginForm.password}
         />
+        <button onClick={this.getPokes}>Show User's Poke's</button>
+        <Pokes pokes={this.state.pokes} />
       </div>
     );
   }
