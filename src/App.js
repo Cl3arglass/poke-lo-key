@@ -102,13 +102,18 @@ class App extends React.Component {
           `Logged in as ${currentUser.name}` :
            "Not logged in"
         }</h2>
-        <Logout logout={this.logout}/>
+
+        {
+          this.state.currentUser ?
+        <Logout logout={this.logout}/> :
         <Login 
           handleLoginFormChange={this.handleLoginFormChange}
           handleLoginFormSubmit={this.handleLoginFormSubmit}
           email={this.state.loginForm.email}
           password={this.state.loginForm.password}
         />
+        }
+        
         <button onClick={this.getPokes}>Show User's Poke's</button>
         <Pokes pokes={this.state.pokes} />
       </div>
