@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Login from './components/Login'
 import Pokes from './components/Pokes'
+import Logout from './components/Logout'
 
 
 
@@ -82,6 +83,15 @@ class App extends React.Component {
       .catch(console.log)
   }
 
+  logout = event => {
+    event.preventDefault()
+    localStorage.removeItem("token")
+    this.setState({
+      currentUser: null,
+      pokes: []
+    })
+  }
+
 
 
   render() {
@@ -92,6 +102,7 @@ class App extends React.Component {
           `Logged in as ${currentUser.name}` :
            "Not logged in"
         }</h2>
+        <Logout logout={this.logout}/>
         <Login 
           handleLoginFormChange={this.handleLoginFormChange}
           handleLoginFormSubmit={this.handleLoginFormSubmit}
