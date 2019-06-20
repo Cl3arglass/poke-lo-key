@@ -20,6 +20,28 @@ class App extends React.Component {
     }
   }
 
+  componentDidMount() {
+    const token = localStorage.getItem("token")
+    if (token) {
+      fetch("http://localhost:3001/api/get_current_user", {
+        headers: {
+          "Authorization": token
+        }
+      })
+      .then(result => result.json())
+        .then(response => {
+          if (response.error) {
+            alert(response.error) 
+          } else {
+            this.setState({
+              currentUser: response.user
+            })
+          }
+        })
+        .catch(console.log)
+    }
+  }
+
   handleLoginFormChange = event => {
      const { name, value } = event.target
      this.setState({
