@@ -50,15 +50,25 @@ class App extends React.Component {
             alert(userJSON.error)
          } else {
             this.setState({
-              currentUser: userJSON
+              currentUser: userJSON.user, 
+              loginForm: {
+                email: "",
+                password: ""
+              }
             })
+            localStorage.setItem('token', userJSON.jwt)
          }
        })
        .catch(console.log)
   }
 
   getPokes = () => {
-    fetch("http://localhost:3001/api/pokes")
+    const token = localStorage.getItem("token")
+    fetch("http://localhost:3001/api/pokes", {
+      headers: {
+        "Authorization": token
+      }
+    })
       .then(result => result.json())
       .then(pokes => {
         if (pokes.error) {
