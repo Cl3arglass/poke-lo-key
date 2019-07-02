@@ -121,7 +121,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <h2>{ currentUser ? 
-          `Logged in as ${currentUser.name}` :
+          `Logged in as ${currentUser.data.attributes.name}` :
            "Not logged in"
         }</h2>
 
