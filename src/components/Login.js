@@ -1,6 +1,11 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { updateLoginForm } from "../actions/loginForm"
 
-const Login = ({ handleLoginFormChange, handleLoginFormSubmit, email, password}) => {
+const Login = ({ handleLoginFormChange, handleLoginFormSubmit, email, password, loginForm, updateLoginForm}) => {
+
+   
+
    return (
    	<div>
    	  <form onSubmit={handleLoginFormSubmit}>
@@ -27,4 +32,10 @@ const Login = ({ handleLoginFormChange, handleLoginFormSubmit, email, password})
    	)
 }
 
-export default Login
+const mapStateToProps = state => {
+	return {
+		loginForm: state.loginForm
+	}
+}
+
+export default connect(mapStateToProps, { updateLoginForm })(Login)
