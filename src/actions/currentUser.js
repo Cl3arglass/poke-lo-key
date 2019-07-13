@@ -58,3 +58,48 @@ export const login = credentials => {
  //       })
  //       .catch(console.log)
 }
+
+
+// const token = localStorage.getItem("token")
+    // if (token) {
+    //   fetch("http://localhost:3001/api/get_current_user", {
+    //     headers: {
+    //       "Authorization": token
+    //     }
+    //   })
+    //   .then(result => result.json())
+    //     .then(response => {
+    //       if (response.error) {
+    //         alert(response.error) 
+    //       } else {
+    //         this.setState({
+    //           currentUser: response.user
+    //         })
+    //       }
+    //     })
+    //     .catch(console.log)
+    // }
+
+export const getCurrentUser = () => {
+	const token = localStorage.getItem("token")
+	if (token) {
+       return dispatch => {
+       	return fetch("http://localhost:3001/api/get_current_user", {
+       		method: "GET",
+       		headers: {
+       			"Authorization": token
+       		},
+       })
+       	.then(result => result.json())
+       	.then(userJSON => {
+         if (userJSON.error) {
+            alert(userJSON.error)
+         } else {
+            dispatch(setCurrentUser(userJSON.user))
+            // localStorage.setItem('token', userJSON.jwt)
+         }
+       })
+       .catch(console.log)
+	}
+  }
+}
