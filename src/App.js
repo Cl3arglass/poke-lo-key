@@ -3,6 +3,8 @@ import './App.css';
 import Login from './components/Login'
 import Pokes from './components/Pokes'
 import Logout from './components/Logout'
+import { connect } from 'react-redux'
+import { getCurrentUser } from './actions/currentUser'
 
 
 
@@ -19,6 +21,10 @@ class App extends React.Component {
   //     pokes: []
   //   }
   // }
+
+  componentDidMount() {
+    this.props.getCurrentUser()
+  }
 
   // componentDidMount() {
   //   const token = localStorage.getItem("token")
@@ -147,4 +153,4 @@ class App extends React.Component {
 }
 
 
-export default App;
+export default connect(null, { getCurrentUser })(App);
