@@ -6,6 +6,13 @@ export const setCurrentUser = user => {
 	}
 }
 
+export const logout = () => {
+	localStorage.removeItem("token")
+	return {
+		type: "CLEAR_CURRENT_USER"
+	}
+}
+
 //async
 export const login = credentials => {
        return dispatch => {
@@ -27,6 +34,16 @@ export const login = credentials => {
        })
        .catch(console.log)
 	}
+}
+
+// export const logout = event => {
+// 	return dispatch => {
+//     dispatch(clearCurrentUser())
+//     return fetch('http://localhost:3001/api/logout', {
+//       method: "DELETE"
+//     })
+//   }
+// }
 	// event.preventDefault()
 
  //    const userInfo = this.state.loginForm
@@ -57,7 +74,7 @@ export const login = credentials => {
  //         }
  //       })
  //       .catch(console.log)
-}
+
 
 
 // const token = localStorage.getItem("token")
@@ -82,7 +99,6 @@ export const login = credentials => {
 
 export const getCurrentUser = () => {
 	const token = localStorage.getItem("token")
-	if (token) {
        return dispatch => {
        	return fetch("http://localhost:3001/api/get_current_user", {
        		method: "GET",
@@ -101,5 +117,4 @@ export const getCurrentUser = () => {
        })
        .catch(console.log)
 	}
-  }
 }
