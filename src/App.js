@@ -147,10 +147,20 @@ class App extends React.Component {
     //   </div>
     // );
     return (
-      <Login/>
+      
+     
+        this.props.currentUser ? <Logout/> : <Login/>
+        
+      
       );
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    currentUser: state.currentUser
+  }
+}
 
-export default connect(null, { getCurrentUser })(App);
+
+export default connect(mapStateToProps, { getCurrentUser })(App);
