@@ -1,3 +1,5 @@
+import { resetLoginForm } from './loginForm'
+
 //synchronous
 export const setCurrentUser = user => {
 	return {
@@ -29,7 +31,9 @@ export const login = credentials => {
             alert(userJSON.error)
          } else {
             dispatch(setCurrentUser(userJSON.user.data))
+            dispatch(resetLoginForm())
             localStorage.setItem('token', userJSON.jwt)
+            
          }
        })
        .catch(console.log)
