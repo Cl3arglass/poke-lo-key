@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 const Navbar = ({ currentUser }) => {
 	return (
        <div>
-          { currentUser  != null ? `Welcome, ${currentUser.data.attributes.name}` : ""}
+          { currentUser ? `Welcome, ${currentUser.attributes.name}` : ""}
           { currentUser ? <Logout/> : <Login/> }
        </div>
     )

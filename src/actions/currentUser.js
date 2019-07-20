@@ -28,7 +28,7 @@ export const login = credentials => {
          if (userJSON.error) {
             alert(userJSON.error)
          } else {
-            dispatch(setCurrentUser(userJSON))
+            dispatch(setCurrentUser(userJSON.user.data))
             localStorage.setItem('token', userJSON.jwt)
          }
        })
@@ -111,7 +111,7 @@ export const getCurrentUser = () => {
          if (userJSON.error) {
             alert(userJSON.error)
          } else {
-            dispatch(setCurrentUser(userJSON.user))
+            dispatch(setCurrentUser(userJSON.user.data))
             // localStorage.setItem('token', userJSON.jwt)
          }
        })
