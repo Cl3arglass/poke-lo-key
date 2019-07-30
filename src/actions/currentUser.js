@@ -1,4 +1,5 @@
 import { resetLoginForm } from './loginForm'
+import { getPokes } from "./pokes.js"
 
 //synchronous
 export const setCurrentUser = user => {
@@ -33,7 +34,7 @@ export const login = credentials => {
             dispatch(setCurrentUser(userJSON.user.data))
             dispatch(resetLoginForm())
             localStorage.setItem('token', userJSON.jwt)
-            
+            dispatch(getPokes())
          }
        })
        .catch(console.log)
@@ -116,6 +117,7 @@ export const getCurrentUser = () => {
             alert(userJSON.error)
          } else {
             dispatch(setCurrentUser(userJSON.user.data))
+            dispatch(getPokes())
             // localStorage.setItem('token', userJSON.jwt)
          }
        })
