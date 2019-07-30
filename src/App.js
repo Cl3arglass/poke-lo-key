@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
-// import Login from './components/Login'
-// import Pokes from './components/Pokes'
+import Login from './components/Login'
+import Pokes from './components/Pokes'
 // import Logout from './components/Logout'
 import { connect } from 'react-redux'
 import { getCurrentUser } from './actions/currentUser'
 import Navbar from './components/Navbar'
 import MainContainer from './components/MainContainer'
+import { Route } from 'react-router-dom'
 
 
 
@@ -149,12 +150,13 @@ class App extends React.Component {
     //   </div>
     // );
     return (
-      
+    
      <div className="App">
         <Navbar/>
         <MainContainer/>
-      </div>  
-      
+          <Route exact path='/login' component={Login}/>
+          <Route exact path='/pokes' component={Pokes}/>
+        </div>  
       );
   }
 }
