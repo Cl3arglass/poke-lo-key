@@ -3,13 +3,15 @@ import thunk from 'redux-thunk'
 import usersReducer from './reducers/users'
 import currentUserReducer from './reducers/currentUser'
 import loginFormReducer from './reducers/loginForm'
+import pokesReducer from './reducers/pokes'
 
 
 
 const reducer = combineReducers({
   users: usersReducer ,
   currentUser: currentUserReducer,
-  loginForm: loginFormReducer    
+  loginForm: loginFormReducer,
+  pokes: pokesReducer    
 
 })
 
