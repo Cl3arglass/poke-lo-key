@@ -1,11 +1,12 @@
 import React from 'react'
+import Pokes from './Pokes.js'
 
 
 
 const MainContainer = () => {
    return (
 	<div>
-	  "Hey"
+	  <Pokes/>
 	</div>
   )
 }
