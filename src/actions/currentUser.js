@@ -1,5 +1,6 @@
 import { resetLoginForm } from './loginForm'
 import { getPokes } from "./pokes.js"
+import { resetSignupForm } from './signupForm'
 
 //synchronous
 export const setCurrentUser = user => {
@@ -31,8 +32,34 @@ export const login = credentials => {
          if (userJSON.error) {
             alert(userJSON.error)
          } else {
+         	console.log(userJSON)
             dispatch(setCurrentUser(userJSON.user.data))
             dispatch(resetLoginForm())
+            localStorage.setItem('token', userJSON.jwt)
+            dispatch(getPokes())
+         }
+       })
+       .catch(console.log)
+	}
+}
+
+export const signup = credentials => {
+       return dispatch => {
+       	return fetch("http://localhost:3001/api/signup", {
+       		method: "POST",
+       		headers: {
+       			"Content-Type": "application/json"
+       		},
+       		body: JSON.stringify(credentials)
+       })
+       	.then(result => result.json())
+       	.then(userJSON => {
+         if (userJSON.error) {
+            alert(userJSON.error)
+         } else {
+            console.log(userJSON)
+            dispatch(setCurrentUser(userJSON.user.data))
+            dispatch(resetSignupForm())
             localStorage.setItem('token', userJSON.jwt)
             dispatch(getPokes())
          }
