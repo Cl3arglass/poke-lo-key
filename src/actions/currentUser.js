@@ -18,7 +18,7 @@ export const logout = () => {
 }
 
 //async
-export const login = credentials => {
+export const login = (credentials, history) => {
        return dispatch => {
        	return fetch("http://localhost:3001/api/login", {
        		method: "POST",
@@ -37,13 +37,14 @@ export const login = credentials => {
             dispatch(resetLoginForm())
             localStorage.setItem('token', userJSON.jwt)
             dispatch(getPokes())
+            history.push('/')
          }
        })
        .catch(console.log)
 	}
 }
 
-export const signup = credentials => {
+export const signup = (credentials, history) => {
        return dispatch => {
        	return fetch("http://localhost:3001/api/signup", {
        		method: "POST",
@@ -62,6 +63,7 @@ export const signup = credentials => {
             dispatch(resetSignupForm())
             localStorage.setItem('token', userJSON.jwt)
             dispatch(getPokes())
+            history.push('/')
          }
        })
        .catch(console.log)
