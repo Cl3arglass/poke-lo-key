@@ -5,6 +5,7 @@ import Pokes from './components/Pokes'
 import Signup from './components/Signup'
 import Home from './components/Home'
 import Logout from './components/Logout'
+import NewPokeForm from './components/NewPokeForm'
 import { connect } from 'react-redux'
 import { getCurrentUser } from './actions/currentUser'
 import Navbar from './components/Navbar'
@@ -160,6 +161,7 @@ class App extends React.Component {
           <Route exact path='/signup' component={Signup}/>
           <Route exact path='/' render={(props)=> loggedIn ? <MainContainer/>
             : <Home {...props}/>}/>
+          <Route exact path='/pokes/new' component={NewPokeForm}/>
         </div>  
       );
   }
