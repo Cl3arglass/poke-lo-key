@@ -5,6 +5,7 @@ import currentUserReducer from './reducers/currentUser'
 import loginFormReducer from './reducers/loginForm'
 import pokesReducer from './reducers/pokes'
 import signupFormReducer from './reducers/signupForm'
+import newPokeFormReducer from './reducers/newPokeForm'
 
 
 
@@ -13,7 +14,8 @@ const reducer = combineReducers({
   currentUser: currentUserReducer,
   loginForm: loginFormReducer,
   pokes: pokesReducer,
-  signupForm: signupFormReducer    
+  signupForm: signupFormReducer,
+  newPokeForm: newPokeFormReducer    
 
 })
 
