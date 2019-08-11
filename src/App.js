@@ -10,7 +10,7 @@ import { connect } from 'react-redux'
 import { getCurrentUser } from './actions/currentUser'
 import Navbar from './components/Navbar'
 import MainContainer from './components/MainContainer'
-import { Route, withRouter } from 'react-router-dom'
+import { Route, withRouter, Switch } from 'react-router-dom'
 
 
 
@@ -155,13 +155,15 @@ class App extends React.Component {
     const { loggedIn } = this.props
     return (
      <div className="App">
-          { loggedIn ? <Logout/> : null }
+          { loggedIn ? <><Navbar/> <Logout/></> : null }
+          <Switch>
           <Route exact path='/login' component={Login}/>
           <Route exact path='/pokes' component={Pokes}/>
           <Route exact path='/signup' component={Signup}/>
           <Route exact path='/' render={(props)=> loggedIn ? <MainContainer/>
             : <Home {...props}/>}/>
           <Route exact path='/pokes/new' component={NewPokeForm}/>
+          </Switch>
         </div>  
       );
   }
