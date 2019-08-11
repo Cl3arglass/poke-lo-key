@@ -6,6 +6,12 @@ export const setPokes = pokes => {
 	}
 }
 
+export const clearPokes = () => {
+	return {
+		type: "CLEAR_POKES"
+	}
+}
+
 //async
 export const getPokes = () => {
 	const token = localStorage.getItem("token")
