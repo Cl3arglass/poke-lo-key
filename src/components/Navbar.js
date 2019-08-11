@@ -1,26 +1,33 @@
 import React from 'react';
-import Login from './Login'
-import Logout from './Logout'
-import Signup from './Signup'
+// import Login from './Login'
+// import Logout from './Logout'
+// import Signup from './Signup'
 import { connect } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 
 const Navbar = ({ currentUser }) => {
-	if (currentUser) {
-		return (
-			<div>
-				Welcome, {currentUser.attributes.name}
-				<Logout/>
-			</div>
-			)
-	} else {
-		return (
-		<div>
-			Please signup or login
-			<Signup/>
-			<Login/>
+	return (
+		<div className="NavBar">
+		   <NavLink exact to="/pokes">My Pokes</NavLink>
+		   <NavLink exact to="/pokes/new">New Poke</NavLink>
 		</div>
-	    )
-	}
+	)
+	// if (currentUser) {
+	// 	return (
+	// 		<div>
+	// 			Welcome, {currentUser.attributes.name}
+	// 			<Logout/>
+	// 		</div>
+	// 		)
+	// } else {
+	// 	return (
+	// 	<div>
+	// 		Please signup or login
+	// 		<Signup/>
+	// 		<Login/>
+	// 	</div>
+	//     )
+	// }
 // return (
  //       <div>
  //          { currentUser ? `Welcome, ${currentUser.attributes.name}` : ""}
