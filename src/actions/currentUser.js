@@ -1,5 +1,5 @@
 import { resetLoginForm } from './loginForm'
-import { getPokes } from "./pokes.js"
+import { getPokes, clearPokes } from "./pokes.js"
 import { resetSignupForm } from './signupForm'
 
 //synchronous
@@ -10,12 +10,13 @@ export const setCurrentUser = user => {
 	}
 }
 
-export const logout = () => {
+export const clearCurrentUser = () => {
 	localStorage.removeItem("token")
 	return {
 		type: "CLEAR_CURRENT_USER"
 	}
 }
+
 
 //async
 export const login = (credentials, history) => {
@@ -70,14 +71,15 @@ export const signup = (credentials, history) => {
 	}
 }
 
-// export const logout = event => {
-// 	return dispatch => {
-//     dispatch(clearCurrentUser())
-//     return fetch('http://localhost:3001/api/logout', {
-//       method: "DELETE"
-//     })
-//   }
-// }
+export const logout = event => {
+	return dispatch => {
+    dispatch(clearCurrentUser())
+    dispatch(clearPokes())
+    // return fetch('http://localhost:3001/api/logout', {
+    //   method: "DELETE"
+    // })
+  }
+}
 	// event.preventDefault()
 
  //    const userInfo = this.state.loginForm
