@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { updateNewPokeForm } from "../actions/newPokeForm"
-// import { signup } from "../actions/currentUser"
+import { createPoke } from "../actions/pokes"
 
-const NewPokeForm = ({ newPokeFormData, updateNewPokeForm }) => {
+const NewPokeForm = ({ newPokeFormData, updateNewPokeForm, createPoke, user_id }) => {
 	const handleInputChange = event => {
    	const { name, value } = event.target
    	const updatedFormInfo = {
@@ -15,6 +15,10 @@ const NewPokeForm = ({ newPokeFormData, updateNewPokeForm }) => {
 
    const handleSubmit = event => {
    	event.preventDefault()
+   	createPoke({
+   		...newPokeFormData,
+   		user_id
+   	})
    	// signup(signupFormData, history)
    }
 
@@ -52,13 +56,15 @@ const NewPokeForm = ({ newPokeFormData, updateNewPokeForm }) => {
 }
 
 const mapStateToProps = state => {
+	const user_id = state.currentUser ? state.currentUser.id : ""
 	return {
-		newPokeFormData: state.newPokeForm
+		newPokeFormData: state.newPokeForm,
+        user_id
 	}
 }
 	
 
-export default connect(mapStateToProps, { updateNewPokeForm })(NewPokeForm);
+export default connect(mapStateToProps, { updateNewPokeForm, createPoke })(NewPokeForm);
 
 // t.string "name"
 //     t.string "location"
