@@ -12,6 +12,13 @@ export const clearPokes = () => {
 	}
 }
 
+export const addPoke = poke => {
+	return {
+		type: "ADD_POKE",
+		poke
+	}
+}
+
 //async
 export const getPokes = () => {
 	const token = localStorage.getItem("token")
@@ -30,6 +37,35 @@ export const getPokes = () => {
             dispatch(setPokes(pokesJSON.data))
          }
        })
+       .catch(console.log)
+	}
+}
+
+export const createPoke = (pokeData, history) => {
+	console.log(pokeData)
+	const token = localStorage.getItem("token")
+	return dispatch => {
+       	return fetch("http://localhost:3001/api/pokes", {
+       		method: "POST",
+       		headers: {
+       			"Content-Type": "application/json",
+       			"Authorization": token
+       		},
+       		body: JSON.stringify(pokeData)
+       })
+       	.then(result => result.json())
+       	.then(console.log)
+       	// .then(pokeJSON => {
+        //  if (pokeJSON.error) {
+        //     alert(pokeJSON.error)
+        //  } else {
+        //     console.log(pokeJSON)
+            // dispatch(setCurrentUser(userJSON.user.pokes.data))
+            // dispatch(resetNewPokeForm())
+            // dispatch(getPokes())
+            // history.push('/')
+         // }
+       // })
        .catch(console.log)
 	}
 }
