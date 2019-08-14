@@ -8,6 +8,7 @@ import { NavLink } from 'react-router-dom'
 const Navbar = ({ currentUser }) => {
 	return (
 		<div className="NavBar">
+		    <p>Logged in as {currentUser.attributes.name}</p>
 		   <NavLink exact to="/pokes">My Pokes</NavLink>
 		   <NavLink exact to="/pokes/new">New Poke</NavLink>
 		</div>
