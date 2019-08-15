@@ -5,7 +5,7 @@ export default (state = initialState, action) => {
  		case "SET_POKES":
  		  return action.pokes
  		case "ADD_POKE":
- 		  return state.pokes.concat(action.trips)
+ 		  return state.concat(action.poke)
  		 case "CLEAR_POKES":
  		  return initialState
  		default:
