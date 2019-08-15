@@ -1,7 +1,8 @@
 const initialState = {
 	name: "",
 	location: "", 
-	found: ""
+	found: "",
+	user_id: ""
 }
 
 
