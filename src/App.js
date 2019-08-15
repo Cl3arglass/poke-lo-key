@@ -6,6 +6,7 @@ import Signup from './components/Signup'
 import Home from './components/Home'
 import Logout from './components/Logout'
 import NewPokeForm from './components/NewPokeForm'
+import PokeCard from './components/PokeCard'
 import { connect } from 'react-redux'
 import { getCurrentUser } from './actions/currentUser'
 import Navbar from './components/Navbar'
@@ -152,7 +153,7 @@ class App extends React.Component {
     //     <Pokes pokes={this.state.pokes} />
     //   </div>
     // );
-    const { loggedIn } = this.props
+    const { loggedIn, pokes } = this.props
     return (
      <div className="App">
           { loggedIn ? <><Navbar/> <Logout/></> : null }
@@ -163,6 +164,11 @@ class App extends React.Component {
           <Route exact path='/' render={(props)=> loggedIn ? <MainContainer/>
             : <Home {...props}/>}/>
           <Route exact path='/pokes/new' component={NewPokeForm}/>
+          <Route exact path='/pokes/:id' render={props=> {
+              const poke = pokes.find(poke => poke.id === props.match.params.id)
+              return <PokeCard poke={poke} {...props}/>
+            }
+          }/>
           </Switch>
         </div>  
       );
@@ -171,7 +177,8 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return ({
-    loggedIn: !!state.currentUser
+    loggedIn: !!state.currentUser,
+    pokes: state.pokes
   })
 }
 
