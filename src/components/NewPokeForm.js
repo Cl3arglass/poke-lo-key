@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { updateNewPokeForm } from "../actions/newPokeForm"
 import { createPoke } from "../actions/pokes"
 
-const NewPokeForm = ({ newPokeFormData, updateNewPokeForm, createPoke, user_id }) => {
+const NewPokeForm = ({ newPokeFormData, updateNewPokeForm, createPoke, user_id, history }) => {
 	const handleInputChange = event => {
    	const { name, value } = event.target
    	const updatedFormInfo = {
@@ -18,7 +18,7 @@ const NewPokeForm = ({ newPokeFormData, updateNewPokeForm, createPoke, user_id }
    	createPoke({
    		...newPokeFormData,
    		user_id
-   	})
+   	}, history)
    	// signup(signupFormData, history)
    }
 
