@@ -1,3 +1,5 @@
+import { resetNewPokeForm } from './newPokeForm'
+
 //synchronous
 export const setPokes = pokes => {
 	return {
@@ -61,7 +63,7 @@ export const createPoke = (pokeData, history) => {
          } else {
             // console.log(pokeJSON)
             dispatch(addPoke(pokeJSON.data))
-            // dispatch(resetNewPokeForm())
+            dispatch(resetNewPokeForm())
             // dispatch(getPokes())
             history.push(`/pokes/${pokeJSON.data.id}`)
          }
