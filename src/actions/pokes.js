@@ -54,18 +54,18 @@ export const createPoke = (pokeData, history) => {
        		body: JSON.stringify(pokeData)
        })
        	.then(result => result.json())
-       	.then(console.log)
-       	// .then(pokeJSON => {
-        //  if (pokeJSON.error) {
-        //     alert(pokeJSON.error)
-        //  } else {
-        //     console.log(pokeJSON)
-            // dispatch(setCurrentUser(userJSON.user.pokes.data))
+       	// .then(console.log)
+       	.then(pokeJSON => {
+         if (pokeJSON.error) {
+            alert(pokeJSON.error)
+         } else {
+            // console.log(pokeJSON)
+            dispatch(addPoke(pokeJSON.data))
             // dispatch(resetNewPokeForm())
             // dispatch(getPokes())
-            // history.push('/')
-         // }
-       // })
+            history.push(`/pokes/${pokeJSON.data.id}`)
+         }
+       })
        .catch(console.log)
 	}
 }
