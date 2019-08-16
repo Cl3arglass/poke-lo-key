@@ -6,6 +6,8 @@ export default (state = initialState, action) => {
  		  return action.pokes
  		case "ADD_POKE":
  		  return state.concat(action.poke)
+ 		case "EDIT_POKE":
+           return state.map(poke => poke.id === action.poke.id ? action.poke : poke)
  		 case "CLEAR_POKES":
  		  return initialState
  		default:
