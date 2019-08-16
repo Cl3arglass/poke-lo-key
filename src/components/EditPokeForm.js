@@ -67,34 +67,6 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, { updateEditPokeForm, updatePoke })(EditPokeForm);
 
-// <form onSubmit={handleSubmit}>
-//           <input
-//             type="text"
-//             name="name"
-//             placeholder="name"
-//             onChange={handleInputChange}
-//             value={editPokeFormData.name}
-//           /><br/>
-//           <input
-//             type="text"
-//             name="location"
-//             placeholder="location"
-//             onChange={handleInputChange}
-//             value={editPokeFormData.location}
-//           /><br/>
-//           <input
-//             type="text"
-//             name="found"
-//             placeholder="found"
-//             onChange={handleInputChange}
-//             value={editPokeFormData.found}
-//           /><br/>
-//           <input
-//             type="submit"
-//             value="Edit Poke"
-//           />
-//         </form>
-
 // t.string "name"
 //     t.string "location"
 //     t.string "found"
