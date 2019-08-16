@@ -1,4 +1,5 @@
 import { resetNewPokeForm } from './newPokeForm'
+import { resetEditPokeForm } from './editPokeForm'
 
 //synchronous
 export const setPokes = pokes => {
@@ -17,6 +18,13 @@ export const clearPokes = () => {
 export const addPoke = poke => {
 	return {
 		type: "ADD_POKE",
+		poke
+	}
+}
+
+export const editPoke = poke => {
+	return {
+		type: "EDIT_POKE",
 		poke
 	}
 }
@@ -64,6 +72,35 @@ export const createPoke = (pokeData, history) => {
             // console.log(pokeJSON)
             dispatch(addPoke(pokeJSON.data))
             dispatch(resetNewPokeForm())
+            // dispatch(getPokes())
+            history.push(`/pokes/${pokeJSON.data.id}`)
+         }
+       })
+       .catch(console.log)
+	}
+}
+
+export const updatePoke = (pokeData, history) => {
+    console.log(pokeData)
+    const token = localStorage.getItem("token")
+	return dispatch => {
+       	return fetch(`http://localhost:3001/api/pokes/${pokeData.id}}`, {
+       		method: "PATCH",
+       		headers: {
+       			"Content-Type": "application/json",
+       			"Authorization": token
+       		},
+       		body: JSON.stringify(pokeData)
+       })
+       	.then(result => result.json())
+       	// .then(console.log)
+       	.then(pokeJSON => {
+         if (pokeJSON.error) {
+            alert(pokeJSON.error)
+         } else {
+            console.log(pokeJSON)
+            dispatch(editPoke(pokeJSON.data))
+            dispatch(resetEditPokeForm())
             // dispatch(getPokes())
             history.push(`/pokes/${pokeJSON.data.id}`)
          }
