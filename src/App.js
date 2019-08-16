@@ -6,6 +6,7 @@ import Signup from './components/Signup'
 import Home from './components/Home'
 import Logout from './components/Logout'
 import NewPokeForm from './components/NewPokeForm'
+import EditPokeForm from './components/EditPokeForm'
 import PokeCard from './components/PokeCard'
 import { connect } from 'react-redux'
 import { getCurrentUser } from './actions/currentUser'
@@ -167,6 +168,11 @@ class App extends React.Component {
           <Route exact path='/pokes/:id' render={props=> {
               const poke = pokes.find(poke => poke.id === props.match.params.id)
               return <PokeCard poke={poke} {...props}/>
+            }
+          }/>
+          <Route exact path='/pokes/:id/edit' render={props=> {
+              const poke = pokes.find(poke => poke.id === props.match.params.id)
+              return <><PokeCard poke={poke} {...props}/> <EditPokeForm poke={poke} {...props}/></>
             }
           }/>
           </Switch>
