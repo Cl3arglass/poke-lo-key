@@ -6,9 +6,11 @@ const Pokes = ({ pokes }) => {
    // const pokesJSX = pokes.map(p => <p key={p.id}>{p.name}</p>)
    const pokesLinks = pokes.map(p => (<><Link  key={p.id} to={`/pokes/${p.id}`}>{p.attributes.name}</Link><br/></>))
    return (
-   	<div className="Pokes">
+      pokes.length ?
+   	<div className="Pokes">   
    	  { pokesLinks }
-   	</div>
+   	</div> :
+      <h3>Add a Poke</h3>
    	)
 }
 
