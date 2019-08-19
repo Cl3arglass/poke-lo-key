@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { updateEditPokeForm } from "../actions/editPokeForm"
-import { updatePoke } from "../actions/pokes"
+import { updatePoke, deletePoke } from "../actions/pokes"
 
-const EditPokeForm = ({ editPokeFormData, updateEditPokeForm, updatePoke, user_id, history, poke }) => {
+const EditPokeForm = ({ editPokeFormData, updateEditPokeForm, updatePoke, user_id, history, poke, deletePoke }) => {
 	const handleInputChange = event => {
    	const { name, value } = event.target
    	const updatedFormInfo = {
@@ -22,6 +22,8 @@ const EditPokeForm = ({ editPokeFormData, updateEditPokeForm, updatePoke, user_i
    	}, history)
    	// signup(signupFormData, history)
    }
+
+   const pokeId = poke ? poke.id :null
 
    return (
    	<div>
@@ -52,6 +54,7 @@ const EditPokeForm = ({ editPokeFormData, updateEditPokeForm, updatePoke, user_i
             value="Edit Poke"
           />
         </form>
+        <button onClick={()=>deletePoke(pokeId, history)}>Delete Poke</button>
    	</div>
    	)
 }
@@ -65,7 +68,7 @@ const mapStateToProps = state => {
 }
 	
 
-export default connect(mapStateToProps, { updateEditPokeForm, updatePoke })(EditPokeForm);
+export default connect(mapStateToProps, { updateEditPokeForm, updatePoke, deletePoke })(EditPokeForm);
 
 // t.string "name"
 //     t.string "location"
