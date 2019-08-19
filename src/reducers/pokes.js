@@ -8,8 +8,10 @@ export default (state = initialState, action) => {
  		  return state.concat(action.poke)
  		case "EDIT_POKE":
            return state.map(poke => poke.id === action.poke.id ? action.poke : poke)
- 		 case "CLEAR_POKES":
+ 		case "CLEAR_POKES":
  		  return initialState
+ 		case "DELETE_POKE":
+ 		  return state.filter(poke => poke.id === action.pokeId ? false : true)
  		default:
  		  return state
  	}
