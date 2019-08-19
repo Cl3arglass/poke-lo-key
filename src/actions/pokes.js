@@ -29,6 +29,13 @@ export const editPoke = poke => {
 	}
 }
 
+export const deletePokeSuccess = pokeId => {
+	return {
+		type: "DELETE_POKE",
+		pokeId
+	}
+}
+
 //async
 export const getPokes = () => {
 	const token = localStorage.getItem("token")
@@ -98,11 +105,34 @@ export const updatePoke = (pokeData, history) => {
          if (pokeJSON.error) {
             alert(pokeJSON.error)
          } else {
-            console.log(pokeJSON)
+            // console.log(pokeJSON)
             dispatch(editPoke(pokeJSON.data))
             dispatch(resetEditPokeForm())
             // dispatch(getPokes())
             history.push(`/pokes/${pokeJSON.data.id}`)
+         }
+       })
+       .catch(console.log)
+	}
+}
+
+export const deletePoke = ( pokeId, history) => {
+   const token = localStorage.getItem("token")
+	return dispatch => {
+       	return fetch(`http://localhost:3001/api/pokes/${pokeId}}`, {
+       		method: "DELETE",
+       		headers: {
+       			"Content-Type": "application/json",
+       			"Authorization": token
+       		}
+       })
+       	.then(result => result.json())
+       	.then(pokeJSON => {
+         if (pokeJSON.error) {
+            alert(pokeJSON.error)
+         } else {
+            dispatch(deletePokeSuccess(pokeId))
+            history.push("/pokes")
          }
        })
        .catch(console.log)
