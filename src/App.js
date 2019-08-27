@@ -158,7 +158,7 @@ class App extends React.Component {
     const { loggedIn, pokes } = this.props
     return (
      <div className="App">
-          { loggedIn ? <><Navbar/> <Logout/></> : null }
+          { loggedIn ? <><Navbar currentUser={this.props.currentUser}/> <Logout/></> : null }
           <Switch>
           <Route exact path='/login' component={Login}/>
           <Route exact path='/pokes' component={PokesContainer}/>
@@ -185,7 +185,8 @@ class App extends React.Component {
 const mapStateToProps = state => {
   return ({
     loggedIn: !!state.currentUser,
-    pokes: state.pokes
+    pokes: state.pokes, 
+    currentUser: state.currentUser
   })
 }
 
