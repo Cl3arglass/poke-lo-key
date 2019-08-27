@@ -1,5 +1,5 @@
 import React from 'react'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 const Pokes = ({ pokes }) => {
@@ -16,9 +16,10 @@ const Pokes = ({ pokes }) => {
 
 
 
-const mapStateToProps = state => {
-   return {
-      pokes: state.pokes
-   }
-}
-export default connect(mapStateToProps)(Pokes)
+// const mapStateToProps = state => {
+//    return {
+//       pokes: state.pokes
+//    }
+// }
+// export default connect(mapStateToProps)(Pokes)
+export default Pokes
