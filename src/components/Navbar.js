@@ -2,7 +2,7 @@ import React from 'react';
 // import Login from './Login'
 // import Logout from './Logout'
 // import Signup from './Signup'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
 const Navbar = ({ currentUser }) => {
@@ -37,10 +37,11 @@ const Navbar = ({ currentUser }) => {
  //    )
 }
 
-const mapStateToProps = ({ currentUser }) => {
-  return {
-    currentUser
-  }
-}
+// const mapStateToProps = ({ currentUser }) => {
+//   return {
+//     currentUser
+//   }
+// }
 
-export default connect(mapStateToProps)(Navbar)
+// export default connect(mapStateToProps)(Navbar)
+export default Navbar
