@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Login from './components/Login'
-import Pokes from './components/Pokes'
+// import Pokes from './components/Pokes'
 import Signup from './components/Signup'
 import Home from './components/Home'
 import Logout from './components/Logout'
@@ -11,8 +11,9 @@ import PokeCard from './components/PokeCard'
 import { connect } from 'react-redux'
 import { getCurrentUser } from './actions/currentUser'
 import Navbar from './components/Navbar'
-import MainContainer from './components/MainContainer'
+// import MainContainer from './components/MainContainer'
 import { Route, withRouter, Switch } from 'react-router-dom'
+import PokesContainer from './containers/PokesContainer'
 
 
 
@@ -160,10 +161,10 @@ class App extends React.Component {
           { loggedIn ? <><Navbar/> <Logout/></> : null }
           <Switch>
           <Route exact path='/login' component={Login}/>
-          <Route exact path='/pokes' component={Pokes}/>
+          <Route exact path='/pokes' component={PokesContainer}/>
           <Route exact path='/signup' component={Signup}/>
-          <Route exact path='/' render={(props)=> loggedIn ? <MainContainer/>
-            : <Home {...props}/>}/>
+          <Route exact path='/' render={(props)=> loggedIn ? <PokesContainer/>
+            : <Home/>}/>
           <Route exact path='/pokes/new' component={NewPokeForm}/>
           <Route exact path='/pokes/:id' render={props=> {
               const poke = pokes.find(poke => poke.id === props.match.params.id)
