@@ -1,10 +1,11 @@
 import React from 'react'
 // import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import LikePoke from './LikePoke'
 
 const Pokes = ({ pokes }) => {
    // const pokesJSX = pokes.map(p => <p key={p.id}>{p.name}</p>)
-   const pokesLinks = pokes.map(p => (<><Link  key={p.id} to={`/pokes/${p.id}`}>{p.attributes.name}</Link><br/></>))
+   const pokesLinks = pokes.map(p => (<><Link  key={p.id} to={`/pokes/${p.id}`}>{p.attributes.name}</Link><LikePoke/><br/></>))
    return (
       pokes.length ?
    	<div className="Pokes">   
