@@ -17,7 +17,8 @@ const EditPokeForm = ({ editPokeFormData, updateEditPokeForm, updatePoke, user_i
    	event.preventDefault()
    	updatePoke({
    		...editPokeFormData,
-         id: poke.id, 
+         id: poke.id,
+         likes: poke.attributes.likes, 
    		user_id
    	}, history)
    	// signup(signupFormData, history)
