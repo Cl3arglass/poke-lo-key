@@ -36,6 +36,13 @@ export const deletePokeSuccess = pokeId => {
 	}
 }
 
+export const likePokeSuccess = poke => {
+	return {
+		type: "LIKE_POKE",
+		poke
+	}
+}
+
 //async
 export const getPokes = () => {
 	const token = localStorage.getItem("token")
@@ -105,11 +112,41 @@ export const updatePoke = (pokeData, history) => {
          if (pokeJSON.error) {
             alert(pokeJSON.error)
          } else {
-            // console.log(pokeJSON)
+            console.log(pokeJSON)
             dispatch(editPoke(pokeJSON.data))
             dispatch(resetEditPokeForm())
             // dispatch(getPokes())
             history.push(`/pokes/${pokeJSON.data.id}`)
+         }
+       })
+       .catch(console.log)
+	}
+}
+
+export const likePoke = (poke) => {
+	// poke.attributes.likes = poke.attributes.likes + 1
+	const likedPoke = Object.assign(poke, {likes: poke.attributes.likes + 1});
+
+    console.log(likedPoke)
+    const token = localStorage.getItem("token")
+	return dispatch => {
+       	return fetch(`http://localhost:3001/api/pokes/${poke.id}}`, {
+       		method: "PATCH",
+       		headers: {
+       			"Content-Type": "application/json",
+       			"Authorization": token
+       		},
+       		body: JSON.stringify(likedPoke)
+       })
+       	.then(result => result.json())
+       	// .then(console.log)
+       	.then(pokeJSON => {
+         if (pokeJSON.error) {
+            alert(pokeJSON.error)
+         } else {
+            console.log(pokeJSON)
+            dispatch(likePokeSuccess(pokeJSON.data))
+            // dispatch(getPokes())
          }
        })
        .catch(console.log)
