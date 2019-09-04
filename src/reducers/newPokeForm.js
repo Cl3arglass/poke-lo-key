@@ -2,6 +2,7 @@ const initialState = {
 	name: "",
 	location: "", 
 	found: "",
+	likes: "",
 	user_id: ""
 }
 
