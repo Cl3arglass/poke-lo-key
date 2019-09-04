@@ -12,6 +12,8 @@ export default (state = initialState, action) => {
  		  return initialState
  		case "DELETE_POKE":
  		  return state.filter(poke => poke.id === action.pokeId ? false : true)
+ 		case "LIKE_POKE":
+           return state.map(poke => poke.id === action.poke.id ? action.poke : poke)
  		default:
  		  return state
  	}
