@@ -10,6 +10,8 @@ class PokesContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {sorted: false, searchPoke: ""}
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSortClick = this.handleSortClick.bind(this);
   }
 
   sortPokes() {
@@ -19,18 +21,18 @@ class PokesContainer extends React.Component {
 }
 
 searchPokes() {
-  if (this.state.searchPoke !== "") {
+  // if (this.state.searchPoke !== "") {
    return [...this.props.pokes].filter((poke) => poke.attributes.name.toLowerCase().includes(this.state.searchPoke.toLowerCase()))
- } else {
-  return [...this.props.pokes]
- }
+ // } else {
+ //  return [...this.props.pokes]
+ // }
 }
 
 handleSortClick() {
-  this.setState(({ sorted }) => {
-    return { sorted: !sorted }
-  })
-
+  // this.setState(({ sorted }) => {
+  //   return { sorted: !sorted }
+  // })
+this.setState({ sorted: !this.state.sorted })
 }
 
 handleInputChange(event) {
@@ -53,10 +55,10 @@ handleInputChange(event) {
                 type="text"
                 name="name"
                 placeholder="Search Poke"
-                onChange={this.handleInputChange.bind(this)}
+                onChange={this.handleInputChange}
                 value={this.state.searchPoke}
               /><br/>
-              <button onClick={()=>this.handleSortClick()}>Sort Pokes</button>
+              <button onClick={this.handleSortClick}>Sort Pokes</button>
               <Pokes pokes={this.state.sorted ? this.sortPokes() : filteredPokes}/>
             </div>
 			)
