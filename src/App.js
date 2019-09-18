@@ -19,17 +19,6 @@ import PokesContainer from './containers/PokesContainer'
 
 class App extends React.Component {
 
-  // constructor(){
-  //   super()
-  //   this.state = {
-  //     currentUser: null,
-  //     loginForm: {
-  //       email: "",
-  //       password: ""
-  //     },
-  //     pokes: []
-  //   }
-  // }
 
   componentDidMount() {
     this.props.getCurrentUser()
@@ -100,61 +89,12 @@ class App extends React.Component {
   //      .catch(console.log)
   // }
 
-  // getPokes = () => {
-  //   const token = localStorage.getItem("token")
-  //   fetch("http://localhost:3001/api/pokes", {
-  //     headers: {
-  //       "Authorization": token
-  //     }
-  //   })
-  //     .then(result => result.json())
-  //     .then(pokes => {
-  //       if (pokes.error) {
-  //          alert("Not authorized for those secrets")
-  //       } else {
-  //         this.setState({
-  //           pokes
-  //         })
-  //       }
-  //     })
-  //     .catch(console.log)
-  // }
-
-  // logout = event => {
-  //   event.preventDefault()
-  //   localStorage.removeItem("token")
-  //   this.setState({
-  //     currentUser: null,
-  //     pokes: []
-  //   })
-  // }
+ 
 
 
 
   render() {
-    // const { currentUser } = this.state
-    // return (
-    //   <div className="App">
-    //     <h2>{ currentUser ? 
-    //       `Logged in as ${currentUser.data.attributes.name}` :
-    //        "Not logged in"
-    //     }</h2>
-
-    //     {
-    //       this.state.currentUser ?
-    //     <Logout logout={this.logout}/> :
-    //     <Login 
-    //       handleLoginFormChange={this.handleLoginFormChange}
-    //       handleLoginFormSubmit={this.handleLoginFormSubmit}
-    //       email={this.state.loginForm.email}
-    //       password={this.state.loginForm.password}
-    //     />
-    //     }
-        
-    //     <button onClick={this.getPokes}>Show User's Poke's</button>
-    //     <Pokes pokes={this.state.pokes} />
-    //   </div>
-    // );
+   
     const { loggedIn, pokes } = this.props
     return (
      <div className="App">
