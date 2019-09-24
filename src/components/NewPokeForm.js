@@ -2,8 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { updateNewPokeForm } from "../actions/newPokeForm"
 import { createPoke } from "../actions/pokes"
+import Comments from "./Comments"
+
+// react state, [], add strings to it, state lives here locally, state change on submit, showing state change as list on page,
+
 
 const NewPokeForm = ({ newPokeFormData, updateNewPokeForm, createPoke, user_id, history }) => {
+
+   
 	const handleInputChange = event => {
    	const { name, value } = event.target
    	const updatedFormInfo = {
@@ -51,6 +57,7 @@ const NewPokeForm = ({ newPokeFormData, updateNewPokeForm, createPoke, user_id, 
    	      value="Add New Poke"
    	    />
    	  </form>
+   	  <Comments />
    	</div>
    	)
 }
